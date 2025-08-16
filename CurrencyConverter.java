@@ -7,12 +7,19 @@ public class CurrencyConverter {
         }
 
         double amount = 0.0;
-        try {
-            amount = Double.parseDouble(args[0]);
-        } catch (NumberFormatException e) {
-            System.out.println("Error: Amount must be a number.");
-            return;
-        }
+       try {
+    amount = Double.parseDouble(args[0]);
+    currency = args[1];
+} catch (NumberFormatException e) {
+    try {
+        amount = Double.parseDouble(args[1]);
+        currency = args[0];
+    } catch (Exception ex) {
+        System.out.println("Error: Amount must be a number.");
+        return;
+    }
+}
+
 
         // Normalize currency input (case-insensitive)
         String currency = args[1].toLowerCase();
