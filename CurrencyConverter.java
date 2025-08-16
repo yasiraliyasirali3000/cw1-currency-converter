@@ -1,35 +1,44 @@
-import java.util.*;
-import java.text.DecimalFormat;
 public class CurrencyConverter {
- public static void main(String[] args) {
- double amount, dollar, pound, code, euro;
- DecimalFormat f = new DecimalFormat("##.##");
- amount = Integer.parseInt(args[0]);
-String currency = args[1];
- // For amounts Conversion
-switch (currency){
- case "dollars" :
- // For Dollar Conversion
-pound = amount * 0.74;
-System.out.println(amount + " Dollars = " + f.format(pound) + " Pounds");
-euro = amount * 0.88;
-System.out.println(amount + " Dollars = " + f.format(euro) + " Euros");
-break;
- case "pounds":
- // For Pound Conversion
-dollar = amount + 1.36;
-System.out.println(amount + " Pounds = " + f.format(dollar) + " Dollars");
- euro = amount * 1.19;
- System.out.println(amount + " Pound = " + f.format(euro) + " Euros");
-break;
- case "euros":
- // For Euro Conversion
- dollar = amount * 1.31;
-System.out.println(amount + " Euros = " + f.format(dollar) + " Dollars");
-pound = amount * 0.84;
- System.out.println(amount + " Euros = " + f.format(pound) + " Pounds");
- break;
- }
-System.out.println("Thank you for using the converter.");
- }
+    public static void main(String[] args) {
+        // Handle missing arguments
+        if (args.length < 2) {
+            System.out.println("Usage: java CurrencyConverter <amount> <currency>");
+            return;
+        }
+
+        double amount = 0.0;
+        try {
+            amount = Double.parseDouble(args[0]);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Amount must be a number.");
+            return;
+        }
+
+        // Normalize currency input (case-insensitive)
+        String currency = args[1].toLowerCase();
+
+        switch (currency) {
+            case "dollars":
+                System.out.println(amount + " Dollars = " + (amount * 0.74) + " Pounds");
+                System.out.println(amount + " Dollars = " + (amount * 0.88) + " Euros");
+                break;
+
+            case "pounds":
+                System.out.println(amount + " Pounds = " + (amount * 1.36) + " Dollars");
+                System.out.println(amount + " Pounds = " + (amount * 1.19) + " Euros");
+                break;
+
+            case "euros":
+                System.out.println(amount + " Euros = " + (amount * 1.13) + " Dollars");
+                System.out.println(amount + " Euros = " + (amount * 0.84) + " Pounds");
+                break;
+
+            default:
+                System.out.println("Unknown currency. Use dollars, pounds, or euros.");
+        }
+
+        System.out.println("Thank you for using the converter.");
+    }
 }
+
+
