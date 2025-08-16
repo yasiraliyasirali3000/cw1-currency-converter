@@ -1,4 +1,3 @@
-cat > CurrencyConverter.java <<'EOF'
 import java.text.DecimalFormat;
 import java.util.Locale;
 
@@ -69,4 +68,3 @@ public class CurrencyConverter {
         System.out.println("Thank you for using the converter.");
     }
 }
-EOF
